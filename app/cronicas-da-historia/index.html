@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crônicas da História — Auxiliar de Estudos</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="topo">
+    <div class="marca">
+      <span class="marca-icone">🏛️</span>
+      <div>
+        <h1>Crônicas da História</h1>
+        <p class="subtitulo">Flashcards, quiz e linha do tempo para estudar História</p>
+      </div>
+    </div>
+
+    <nav class="abas" role="tablist">
+      <button class="aba ativa" data-aba="estudar" role="tab">📖 Estudar</button>
+      <button class="aba" data-aba="quiz" role="tab">🎯 Quiz</button>
+      <button class="aba" data-aba="cards" role="tab">🗂️ Cards</button>
+      <button class="aba" data-aba="linha" role="tab">📅 Linha do tempo</button>
+    </nav>
+
+    <div class="topo-info">
+      <span class="contador-badge" id="contador-pendentes" title="Cards para revisar agora">0</span>
+      <button class="btn btn-claro" id="btn-tema" title="Alternar tema claro/escuro">🌙</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= ESTUDAR ================= -->
+    <section class="painel ativo" id="painel-estudar">
+      <div class="resumo" id="resumo-estudo"></div>
+
+      <div class="barra-progresso">
+        <div class="progresso-trilho"><div class="progresso-fill" id="progresso-fill"></div></div>
+        <span class="progresso-texto" id="progresso-texto">0 / 0</span>
+      </div>
+
+      <div id="area-estudo">
+        <article class="cartao" id="cartao-estudo">
+          <span class="etiqueta" id="etiqueta-tema"></span>
+          <p class="cartao-frente" id="cartao-frente"></p>
+          <div class="cartao-verso" id="cartao-verso" hidden>
+            <hr>
+            <p class="cartao-tras" id="cartao-tras"></p>
+          </div>
+          <button class="btn btn-primario btn-revelar" id="btn-revelar">Revelar resposta</button>
+        </article>
+
+        <div class="avaliacao" id="area-avaliacao" hidden>
+          <p class="avaliacao-titulo">Quão bem você lembrava?</p>
+          <div class="avaliacao-botoes">
+            <button class="btn btn-erro" data-nota="0">
+              <strong>Esqueci</strong>
+              <small id="txt-0">revisar já</small>
+            </button>
+            <button class="btn btn-medio" data-nota="3">
+              <strong>Difícil</strong>
+              <small id="txt-3">pouco</small>
+            </button>
+            <button class="btn btn-facil" data-nota="4">
+              <strong>Fácil</strong>
+              <small id="txt-4">ok</small>
+            </button>
+            <button class="btn btn-bom" data-nota="5">
+              <strong>Muito fácil</strong>
+              <small id="txt-5">perfeito</small>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="vazio" id="estudo-vazio" hidden>
+        <span class="vazio-icone">🎉</span>
+        <h2>Nada para revisar agora!</h2>
+        <p id="estudo-vazio-msg">Você está em dia com as revisões. Volte mais tarde ou estude à frente.</p>
+        <div class="vazio-acoes">
+          <button class="btn btn-primario" id="btn-estudar-fora">Estudar à frente</button>
+          <button class="btn btn-claro" id="btn-ir-quiz">Fazer um quiz</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= QUIZ ================= -->
+    <section class="painel" id="painel-quiz">
+      <div id="quiz-config">
+        <h2 class="titulo-secao">Montar quiz</h2>
+        <p class="texto-suave">Escolha o formato, o tema e a quantidade de questões.</p>
+
+        <div class="campo">
+          <label for="quiz-tema">Tema</label>
+          <select id="quiz-tema"></select>
+        </div>
+
+        <div class="campo">
+          <label>Formato</label>
+          <div class="opcoes">
+            <label class="opcao">
+              <input type="radio" name="quiz-tipo" value="multipla" checked>
+              <span><strong>Múltipla escolha</strong><small>Montada a partir dos seus cards</small></span>
+            </label>
+            <label class="opcao">
+              <input type="radio" name="quiz-tipo" value="banco">
+              <span><strong>Banco de questões</strong><small>Questões com explicação</small></span>
+            </label>
+            <label class="opcao">
+              <input type="radio" name="quiz-tipo" value="escrita">
+              <span><strong>Resposta escrita</strong><small>Você digita a resposta</small></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="quiz-quantidade">Quantidade de questões: <strong id="quiz-quantidade-valor">10</strong></label>
+          <input type="range" id="quiz-quantidade" min="3" max="30" step="1" value="10">
+        </div>
+
+        <button class="btn btn-primario btn-grande" id="btn-iniciar-quiz">Começar</button>
+      </div>
+
+      <div id="quiz-jogo" hidden>
+        <div class="barra-progresso">
+          <div class="progresso-trilho"><div class="progresso-fill" id="quiz-progresso-fill"></div></div>
+          <span class="progresso-texto" id="quiz-progresso-texto">1 / 10</span>
+        </div>
+
+        <article class="cartao">
+          <span class="etiqueta" id="quiz-etiqueta"></span>
+          <p class="cartao-frente" id="quiz-pergunta"></p>
+
+          <div id="quiz-multipla" class="alternativas"></div>
+
+          <div id="quiz-escrita" class="escrita" hidden>
+            <input type="text" id="quiz-input" placeholder="Digite sua resposta..." autocomplete="off">
+            <button class="btn btn-primario" id="btn-enviar-resposta">Responder</button>
+          </div>
+        </article>
+
+        <div class="feedback" id="quiz-feedback" hidden>
+          <p class="feedback-titulo" id="quiz-feedback-titulo"></p>
+          <p class="feedback-texto" id="quiz-feedback-texto"></p>
+          <button class="btn btn-primario" id="btn-proxima">Próxima questão</button>
+        </div>
+      </div>
+
+      <div id="quiz-resultado" hidden>
+        <div class="resultado">
+          <span class="resultado-icone" id="resultado-icone">🏆</span>
+          <h2 id="resultado-titulo"></h2>
+          <div class="resultado-valor"><span id="resultado-nota">0</span><small>/ <span id="resultado-total">0</span></small></div>
+          <p class="resultado-msg" id="resultado-msg"></p>
+          <div class="resultado-acoes">
+            <button class="btn btn-primario" id="btn-refazer-erradas" hidden>Refazer erradas</button>
+            <button class="btn btn-claro" id="btn-novo-quiz">Novo quiz</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CARDS ================= -->
+    <section class="painel" id="painel-cards">
+      <div class="cards-topo">
+        <h2 class="titulo-secao">Meus flashcards</h2>
+        <div class="cards-acoes">
+          <button class="btn btn-primario" id="btn-novo-card">+ Novo card</button>
+          <button class="btn btn-claro" id="btn-exportar" title="Exportar como JSON">⬇ Exportar</button>
+          <button class="btn btn-claro" id="btn-importar" title="Importar de JSON">⬆ Importar</button>
+          <input type="file" id="input-importar" accept="application/json" hidden>
+        </div>
+      </div>
+
+      <div class="filtros">
+        <input type="search" id="busca" placeholder="Buscar card...">
+        <select id="filtro-tema"></select>
+        <select id="filtro-status">
+          <option value="">Todos</option>
+          <option value="due">Para revisar agora</option>
+          <option value="1">Revisar em até 1 dia</option>
+          <option value="3">Revisar em até 3 dias</option>
+          <option value="7">Revisar em até 7 dias</option>
+        </select>
+      </div>
+
+      <div class="lista-cards" id="lista-cards"></div>
+
+      <div class="vazio" id="cards-vazio" hidden>
+        <span class="vazio-icone">🗂️</span>
+        <h2>Nenhum card encontrado</h2>
+        <p>Crie seu primeiro flashcard ou ajuste a busca.</p>
+      </div>
+    </section>
+
+    <!-- ================= LINHA DO TEMPO ================= -->
+    <section class="painel" id="painel-linha">
+      <h2 class="titulo-secao">Linha do tempo</h2>
+      <p class="texto-suave">Os principais eventos, em ordem cronológica.</p>
+
+      <div class="filtros">
+        <select id="linha-tema"></select>
+        <input type="search" id="linha-busca" placeholder="Buscar evento...">
+      </div>
+
+      <ol class="linha-tempo" id="linha-lista"></ol>
+    </section>
+  </main>
+
+  <!-- ================= MODAL ================= -->
+  <div class="modal-fundo" id="modal-fundo" hidden>
+    <div class="modal" role="dialog" aria-modal="true">
+      <h2 id="modal-titulo">Novo card</h2>
+      <form id="form-card">
+        <div class="campo">
+          <label for="card-frente">Pergunta / termo</label>
+          <textarea id="card-frente" rows="2" required placeholder="Ex.: Quem foi Getúlio Vargas?"></textarea>
+        </div>
+        <div class="campo">
+          <label for="card-tras">Resposta / definição</label>
+          <textarea id="card-tras" rows="3" required placeholder="Ex.: Presidente brasileiro entre 1930 e 1945."></textarea>
+        </div>
+        <div class="campo">
+          <label for="card-tema">Tema</label>
+          <select id="card-tema"></select>
+        </div>
+        <div class="modal-acoes">
+          <button type="button" class="btn btn-claro" id="btn-cancelar">Cancelar</button>
+          <button type="submit" class="btn btn-primario">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="aviso" id="aviso" hidden></div>
+
+  <script src="js/dados.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

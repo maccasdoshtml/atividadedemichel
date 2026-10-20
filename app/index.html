@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aplicativos de História</title>
+  <style>
+    :root {
+      --fundo: #f4efe4;
+      --cartao: #ffffff;
+      --texto: #2b2419;
+      --suave: #6d6353;
+      --borda: #ddd2bd;
+      --primaria: #8c5a2b;
+      --primaria-clara: #f0e2cd;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--fundo);
+      color: var(--texto);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.55;
+      padding: 48px 20px;
+    }
+    .envoltorio { max-width: 780px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 34px; }
+    .icone { font-size: 46px; }
+    h1 { font-family: Georgia, "Times New Roman", serif; margin: 6px 0 4px; font-size: 30px; }
+    header p { color: var(--suave); margin: 0; }
+    .lista { display: grid; gap: 16px; }
+    a.aplicativo {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: var(--cartao);
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      padding: 20px 22px;
+      transition: .16s;
+    }
+    a.aplicativo:hover {
+      border-color: var(--primaria);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(60, 44, 22, .13);
+    }
+    a.aplicativo h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 21px;
+      margin: 0 0 4px;
+    }
+    a.aplicativo p { margin: 0 0 10px; color: var(--suave); font-size: 14.5px; }
+    .tags { display: flex; gap: 7px; flex-wrap: wrap; }
+    .tag {
+      background: var(--primaria-clara);
+      color: var(--primaria);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 11px;
+      border-radius: 999px;
+    }
+    footer { text-align: center; color: var(--suave); font-size: 13px; margin-top: 30px; }
+    @media (max-width: 520px) { body { padding: 30px 14px; } }
+  </style>
+</head>
+<body>
+  <div class="envoltorio">
+    <header>
+      <span class="icone">🏛️</span>
+      <h1>Aplicativos de História</h1>
+      <p>Duas ferramentas para estudar História — abra e comece a revisar.</p>
+    </header>
+
+    <div class="lista">
+      <a class="aplicativo" href="cronicas-da-historia/index.html">
+        <h2>Crônicas da História</h2>
+        <p>Flashcards com repetição espaçada (as revisões voltam na hora certa), quiz em três
+           formatos, banco de questões com explicações, linha do tempo e criar os seus próprios cards.</p>
+        <span class="tags">
+          <span class="tag">Repetição espaçada</span>
+          <span class="tag">Quiz</span>
+          <span class="tag">Linha do tempo</span>
+          <span class="tag">63 cards</span>
+          <span class="tag">59 questões</span>
+        </span>
+      </a>
+
+      <a class="aplicativo" href="histor-em-foco/index.html">
+        <h2>História em Foco</h2>
+        <p>Quiz de múltipla escolha com explicação, cartões que viram ao clique, linha do tempo
+           e um painel de estatísticas com o seu desempenho por tema.</p>
+        <span class="tags">
+          <span class="tag">Quiz</span>
+          <span class="tag">Cartões</span>
+          <span class="tag">Estatísticas</span>
+        </span>
+      </a>
+    </div>
+
+    <footer>HTML, CSS e JavaScript puro — não precisa instalar nada.</footer>
+  </div>
+</body>
+</html>
