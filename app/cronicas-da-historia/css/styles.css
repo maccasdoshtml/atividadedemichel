@@ -6,38 +6,47 @@
   --fonte: "Georgia", "Times New Roman", serif;
   --fonte-ui: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
-  --fundo: #f4efe4;
+  /* Paleta da escola: azul, amarelo e branco */
+  --fundo: #eef4fd;
   --fundo-alt: #ffffff;
-  --texto: #2b2419;
-  --texto-suave: #6d6353;
-  --borda: #ddd2bd;
-  --primaria: #8c5a2b;
-  --primaria-escura: #6d431d;
-  --primaria-clara: #f0e2cd;
-  --erro: #a83232;
-  --medio: #b07a1c;
-  --facil: #3f7a4a;
-  --bom: #2a6b7a;
-  --sombra: 0 2px 10px rgba(60, 44, 22, .12);
-  --sombra-forte: 0 12px 32px rgba(60, 44, 22, .22);
+  --texto: #0f2340;
+  --texto-suave: #4c6182;
+  --borda: #d4e2f6;
+  --primaria: #1565c0;
+  --primaria-escura: #0d47a1;
+  --primaria-clara: #e2edfc;
+  --amarelo: #ffc107;
+  --amarelo-escuro: #a87400;
+  --amarelo-claro: #fff4d1;
+  --erro: #b3261e;
+  --medio: #c98a00;
+  --facil: #2e7d4f;
+  --bom: #0f6d8c;
+  --sombra: 0 2px 10px rgba(15, 35, 64, .12);
+  --sombra-forte: 0 12px 32px rgba(15, 35, 64, .22);
   --raio: 12px;
+  --topo-fundo: linear-gradient(135deg, #1e6fd0 0%, #0a3d8f 100%);
 }
 
 body.tema-escuro {
-  --fundo: #17140f;
-  --fundo-alt: #221e17;
-  --texto: #ece4d6;
-  --texto-suave: #a89c88;
-  --borda: #3b342a;
-  --primaria: #d59a58;
-  --primaria-escura: #b87c3d;
-  --primaria-clara: #33291d;
-  --erro: #e07a7a;
-  --medio: #e0b060;
-  --facil: #79c48c;
-  --bom: #7fc3d4;
+  --fundo: #0b1524;
+  --fundo-alt: #111f36;
+  --texto: #eaf2ff;
+  --texto-suave: #a3bada;
+  --borda: #22375c;
+  --primaria: #63a8ff;
+  --primaria-escura: #8cc4ff;
+  --primaria-clara: #16294a;
+  --amarelo: #ffd34d;
+  --amarelo-escuro: #ffc107;
+  --amarelo-claro: #3b2f0c;
+  --erro: #f08b84;
+  --medio: #ffc861;
+  --facil: #6fc48d;
+  --bom: #67b6cf;
   --sombra: 0 2px 10px rgba(0, 0, 0, .45);
   --sombra-forte: 0 12px 32px rgba(0, 0, 0, .6);
+  --topo-fundo: linear-gradient(135deg, #123a72 0%, #07172f 100%);
 }
 
 * { box-sizing: border-box; }
@@ -56,12 +65,12 @@ body {
 
 /* ---------------- Topo ---------------- */
 .topo {
-  background: var(--fundo-alt);
-  border-bottom: 3px double var(--borda);
+  background: var(--topo-fundo);
+  border-bottom: 3px solid var(--amarelo);
   padding: 14px 22px;
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 10px 22px;
   flex-wrap: wrap;
   position: sticky;
   top: 0;
@@ -69,21 +78,39 @@ body {
   box-shadow: var(--sombra);
 }
 
-.marca { display: flex; align-items: center; gap: 12px; }
-.marca-icone { font-size: 30px; }
+.marca { display: flex; align-items: center; gap: 12px; order: 1; flex: 1 1 200px; min-width: 0; }
+.marca-logo {
+  width: 52px;
+  height: 52px;
+  flex: none;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .25));
+}
+.marca-texto { display: flex; flex-direction: column; }
+.escola-nome {
+  font-family: var(--fonte-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--amarelo);
+  margin: 0 0 2px;
+  line-height: 1.25;
+}
 .topo h1 {
   font-family: var(--fonte);
   margin: 0;
   font-size: 21px;
   letter-spacing: .3px;
+  color: #fff;
 }
-.subtitulo { margin: 0; font-size: 12.5px; color: var(--texto-suave); }
+.subtitulo { margin: 0; font-size: 12.5px; color: rgba(255, 255, 255, .82); }
 
-.abas { display: flex; gap: 6px; margin-left: auto; flex-wrap: wrap; }
+/* as abas ficam numa linha própria, abaixo do nome do app */
+.abas { display: flex; gap: 6px; order: 3; flex: 1 0 100%; flex-wrap: wrap; }
 .aba {
   background: transparent;
   border: 1px solid transparent;
-  color: var(--texto-suave);
+  color: rgba(255, 255, 255, .85);
   font-family: var(--fonte-ui);
   font-size: 14px;
   font-weight: 600;
@@ -92,15 +119,15 @@ body {
   cursor: pointer;
   transition: .18s;
 }
-.aba:hover { background: var(--primaria-clara); color: var(--texto); }
-.aba.ativa { background: var(--primaria); color: #fff; border-color: var(--primaria); }
-body.tema-escuro .aba.ativa { color: #17140f; }
+.aba:hover { background: rgba(255, 255, 255, .18); color: #fff; }
+.aba.ativa { background: var(--amarelo); color: #3b2f00; border-color: var(--amarelo); }
+body.tema-escuro .aba.ativa { color: #3b2f00; }
 
-.topo-info { display: flex; align-items: center; gap: 10px; }
+.topo-info { display: flex; align-items: center; gap: 10px; order: 2; margin-left: auto; }
 .btn-instalar { padding: 7px 13px; font-size: 13px; white-space: nowrap; }
 .contador-badge {
-  background: var(--primaria);
-  color: #fff;
+  background: var(--amarelo);
+  color: #3b2f00;
   font-weight: 700;
   font-size: 13px;
   min-width: 30px;
@@ -110,7 +137,13 @@ body.tema-escuro .aba.ativa { color: #17140f; }
   place-items: center;
   padding: 0 9px;
 }
-body.tema-escuro .contador-badge { color: #17140f; }
+body.tema-escuro .contador-badge { color: #3b2f00; }
+
+/* botão claro dentro do cabeçalho azul */
+.topo .btn-claro { color: rgba(255, 255, 255, .85); }
+.topo .btn-claro:hover { background: rgba(255, 255, 255, .18); color: #fff; }
+.topo .btn-primario { background: var(--amarelo); border-color: var(--amarelo); color: #3b2f00; }
+.topo .btn-primario:hover { background: var(--amarelo-escuro); border-color: var(--amarelo-escuro); color: #fff; }
 
 /* ---------------- Layout ---------------- */
 main { max-width: 900px; margin: 0 auto; padding: 26px 20px 70px; }
@@ -140,7 +173,7 @@ main { max-width: 900px; margin: 0 auto; padding: 26px 20px 70px; }
 .btn:disabled { opacity: .5; cursor: not-allowed; transform: none; box-shadow: none; }
 
 .btn-primario { background: var(--primaria); border-color: var(--primaria); color: #fff; }
-body.tema-escuro .btn-primario { color: #17140f; }
+body.tema-escuro .btn-primario { color: #0b1524; }
 .btn-primario:hover { background: var(--primaria-escura); border-color: var(--primaria-escura); }
 
 .btn-claro { background: transparent; color: var(--texto-suave); }
@@ -174,7 +207,7 @@ body.tema-escuro .btn-primario { color: #17140f; }
 .progresso-fill {
   height: 100%;
   width: 0;
-  background: var(--primaria);
+  background: linear-gradient(90deg, var(--primaria), var(--amarelo));
   border-radius: 999px;
   transition: width .3s ease;
 }
@@ -197,8 +230,8 @@ body.tema-escuro .btn-primario { color: #17140f; }
 .etiqueta {
   display: inline-block;
   align-self: center;
-  background: var(--primaria-clara);
-  color: var(--primaria-escura);
+  background: var(--amarelo-claro);
+  color: var(--amarelo-escuro);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: .4px;
@@ -206,7 +239,7 @@ body.tema-escuro .btn-primario { color: #17140f; }
   padding: 4px 12px;
   border-radius: 999px;
 }
-body.tema-escuro .etiqueta { color: var(--primaria); }
+body.tema-escuro .etiqueta { color: var(--amarelo); }
 
 .cartao-frente {
   font-family: var(--fonte);
@@ -417,7 +450,7 @@ body.tema-escuro .evento-ano { color: var(--primaria); }
 .modal-fundo {
   position: fixed;
   inset: 0;
-  background: rgba(20, 14, 6, .55);
+  background: rgba(8, 26, 56, .6);
   display: grid;
   place-items: center;
   padding: 20px;
@@ -452,13 +485,21 @@ body.tema-escuro .evento-ano { color: var(--primaria); }
   animation: subir .2s ease;
 }
 
+body.tema-escuro .btn-erro,
+body.tema-escuro .btn-medio,
+body.tema-escuro .btn-facil,
+body.tema-escuro .btn-bom { color: #0b1524; }
+
 /* ---------------- Responsivo ---------------- */
 @media (max-width: 720px) {
-  .topo { gap: 12px; padding: 12px 15px; }
+  .topo { gap: 10px 12px; padding: 12px 15px; }
   .subtitulo { display: none; }
-  .abas { width: 100%; margin-left: 0; justify-content: space-between; }
-  .aba { flex: 1; padding: 9px 8px; font-size: 12.5px; }
-  .topo-info { position: absolute; right: 15px; top: 12px; }
+  .marca-logo { width: 44px; height: 44px; }
+  .escola-nome { font-size: 9.5px; }
+  .topo h1 { font-size: 18px; }
+  .abas { width: 100%; margin-left: 0; justify-content: flex-start; order: 3; overflow-x: auto; flex-wrap: nowrap; }
+  .aba { flex: 0 0 auto; padding: 9px 10px; font-size: 12.5px; white-space: nowrap; }
+  .topo-info { position: static; margin-left: auto; order: 2; }
   .filtros { grid-template-columns: 1fr; }
   .opcoes { grid-template-columns: 1fr; }
   .avaliacao-botoes { grid-template-columns: 1fr 1fr; }

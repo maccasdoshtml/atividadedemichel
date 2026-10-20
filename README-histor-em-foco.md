@@ -1,8 +1,9 @@
 # História em Foco 🏛️
 
-Aplicativo de estudos de **História**, feito em HTML, CSS e JavaScript puro (sem
-dependências, sem build). Toda a interface e todo o conteúdo estão em **português
-do Brasil (pt-BR)**.
+Aplicativo de estudos de **História** da **Escola Estadual Professor Abel Freire
+Coelho (Mossoró-RN)**, feito em HTML, CSS e JavaScript puro (sem dependências,
+sem build). Toda a interface e todo o conteúdo estão em **português do Brasil
+(pt-BR)**. Cores: azul, amarelo e branco, com o brasão da escola no cabeçalho.
 
 ## Como usar
 
@@ -34,6 +35,10 @@ o ícone de instalar na barra de endereço). No iPhone/Safari: Compartilhar →
 "Adicionar à Tela de Início". O app funciona offline graças ao service worker
 (`sw.js`), e o conteúdo vem do `manifest.webmanifest`.
 
+O botão **📲 Instalar** aparece no cabeçalho quando o navegador oferece a
+instalação. Ele só funciona em **HTTPS** ou em `localhost` — teste sempre pelo
+endereço online do site.
+
 ## Conteúdo
 
 6 temas: Brasil (colonização e Império), Brasil (República e hoje), Mundo Antigo,
@@ -44,7 +49,10 @@ Idade Média e Renascimento, Revoluções e Era Moderna, Guerras Mundiais e Guer
 ```
 app/histor-em-foco/
 ├── index.html      # estrutura da página
+├── manifest.webmanifest
+├── sw.js           # service worker (cache + offline)
 ├── css/styles.css  # estilos (com suporte a tema escuro)
+├── assets/logo.svg # brasão da escola (provisório)
 └── js/
     ├── dados.js    # conteúdo: questões, cartões e linha do tempo
     └── app.js      # lógica do aplicativo

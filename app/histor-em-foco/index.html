@@ -3,15 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Estuda História de forma divertida: quizzes, cartões de revisão, linha do tempo e estatísticas.">
+  <meta name="description" content="Estuda História de forma divertida: quizzes, cartões de revisão, linha do tempo e estatísticas. Escola Estadual Professor Abel Freire Coelho — Mossoró-RN.">
   <title>História em Foco — App de estudos</title>
-  <meta name="theme-color" content="#8c5a2b">
+  <meta name="theme-color" content="#1565c0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1524" media="(prefers-color-scheme: dark)">
   <meta name="color-scheme" content="light dark">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icons/icon-192.png" type="image/png">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon-180.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="História em Foco">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,12 +24,16 @@
   <header class="topo">
     <div class="topo__conteudo">
       <div class="marca">
-        <span class="marca__icone" aria-hidden="true">🏛️</span>
-        <div>
+        <img class="marca__logo" src="assets/logo.svg" width="50" height="50"
+             alt="Logo da Escola Estadual Professor Abel Freire Coelho">
+        <div class="marca__texto">
+          <p class="escola-nome">EE Prof. Abel Freire Coelho · Mossoró-RN</p>
           <h1 class="marca__nome">História em Foco</h1>
           <p class="marca__sub">Seu companheiro de estudos</p>
         </div>
       </div>
+
+      <button class="botao botao--instalar" id="btn-instalar" hidden>📲 Instalar</button>
 
       <nav class="abas" role="tablist" aria-label="Seções do aplicativo">
         <button class="aba aba--ativa" role="tab" aria-selected="true" data-aba="quiz">Quiz</button>
@@ -187,6 +193,7 @@
 
   <footer class="rodape">
     <p>História em Foco — feito para estudar com calma. Bons estudos! 📚</p>
+    <p class="rodape__escola">Escola Estadual Professor Abel Freire Coelho — Mossoró-RN</p>
   </footer>
 
   <script src="js/dados.js"></script>

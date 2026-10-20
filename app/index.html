@@ -3,18 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aplicativos de História</title>
+  <title>Aplicativos de História — EE Prof. Abel Freire Coelho</title>
+  <meta name="description" content="Aplicativos de estudos de História da Escola Estadual Professor Abel Freire Coelho — Mossoró-RN. Instale no celular e estude offline.">
+  <meta name="theme-color" content="#1565c0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1524" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="../icons/apple-touch-icon-180.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="História">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
   <style>
     :root {
-      --fundo: #f4efe4;
+      --fundo: #eef4fd;
       --cartao: #ffffff;
-      --texto: #2b2419;
-      --suave: #6d6353;
-      --borda: #ddd2bd;
-      --primaria: #8c5a2b;
-      --primaria-clara: #f0e2cd;
+      --texto: #0f2340;
+      --suave: #4c6182;
+      --borda: #d4e2f6;
+      --azul: #1565c0;
+      --azul-escuro: #0d47a1;
+      --azul-claro: #e2edfc;
+      --amarelo: #ffc107;
+      --amarelo-escuro: #a87400;
+      --amarelo-claro: #fff4d1;
+      --topo: linear-gradient(135deg, #1e6fd0 0%, #0a3d8f 100%);
     }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --fundo: #0b1524;
+        --cartao: #111f36;
+        --texto: #eaf2ff;
+        --suave: #a3bada;
+        --borda: #22375c;
+        --azul: #63a8ff;
+        --azul-escuro: #8cc4ff;
+        --azul-claro: #16294a;
+        --amarelo: #ffd34d;
+        --amarelo-escuro: #ffc107;
+        --amarelo-claro: #3b2f0c;
+        --topo: linear-gradient(135deg, #123a72 0%, #07172f 100%);
+      }
+    }
+
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       min-height: 100vh;
@@ -22,55 +57,133 @@
       color: var(--texto);
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
       line-height: 1.55;
-      padding: 48px 20px;
     }
-    .envoltorio { max-width: 780px; margin: 0 auto; }
-    header { text-align: center; margin-bottom: 34px; }
-    .icone { font-size: 46px; }
-    h1 { font-family: Georgia, "Times New Roman", serif; margin: 6px 0 4px; font-size: 30px; }
-    header p { color: var(--suave); margin: 0; }
+
+    .topo {
+      background: var(--topo);
+      border-bottom: 3px solid var(--amarelo);
+      padding: 28px 20px 30px;
+      text-align: center;
+      color: #fff;
+    }
+    .topo .logo {
+      width: 88px;
+      height: 88px;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .3));
+    }
+    .escola {
+      margin: 12px 0 2px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--amarelo);
+    }
+    .topo h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      margin: 4px 0 6px;
+      font-size: 30px;
+    }
+    .topo p { margin: 0; color: rgba(255, 255, 255, .88); }
+
+    .envoltorio { max-width: 780px; margin: 0 auto; padding: 26px 20px 40px; }
+
+    .acoes { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font: inherit;
+      font-weight: 600;
+      font-size: 15px;
+      padding: .7rem 1.4rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: .16s;
+    }
+    .btn--instalar { background: var(--amarelo); color: #3b2f00; }
+    .btn--instalar:hover { background: var(--amarelo-escuro); color: #fff; }
+    .btn--dica { background: var(--azul-claro); color: var(--azul); border-color: var(--borda); }
+    .btn--dica:hover { border-color: var(--azul); }
+
     .lista { display: grid; gap: 16px; }
+
     a.aplicativo {
       display: block;
       text-decoration: none;
       color: inherit;
       background: var(--cartao);
       border: 1px solid var(--borda);
+      border-left: 6px solid var(--azul);
       border-radius: 14px;
       padding: 20px 22px;
       transition: .16s;
     }
     a.aplicativo:hover {
-      border-color: var(--primaria);
+      border-color: var(--azul);
+      border-left-color: var(--amarelo);
       transform: translateY(-2px);
-      box-shadow: 0 10px 26px rgba(60, 44, 22, .13);
+      box-shadow: 0 10px 26px rgba(15, 35, 64, .13);
     }
     a.aplicativo h2 {
       font-family: Georgia, "Times New Roman", serif;
       font-size: 21px;
       margin: 0 0 4px;
+      color: var(--azul);
     }
     a.aplicativo p { margin: 0 0 10px; color: var(--suave); font-size: 14.5px; }
     .tags { display: flex; gap: 7px; flex-wrap: wrap; }
     .tag {
-      background: var(--primaria-clara);
-      color: var(--primaria);
+      background: var(--azul-claro);
+      color: var(--azul);
       font-size: 12px;
       font-weight: 600;
       padding: 3px 11px;
       border-radius: 999px;
     }
+    .tag--amarelo { background: var(--amarelo-claro); color: var(--amarelo-escuro); }
+
+    .dica-instalar {
+      background: var(--amarelo-claro);
+      border: 1px solid var(--amarelo);
+      color: var(--texto);
+      border-radius: 14px;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      font-size: 14.5px;
+    }
+    .dica-instalar strong { color: var(--amarelo-escuro); }
+    @media (prefers-color-scheme: dark) {
+      .dica-instalar strong { color: var(--amarelo); }
+    }
+
     footer { text-align: center; color: var(--suave); font-size: 13px; margin-top: 30px; }
-    @media (max-width: 520px) { body { padding: 30px 14px; } }
+    footer strong { color: var(--azul); }
   </style>
 </head>
 <body>
-  <div class="envoltorio">
-    <header>
-      <span class="icone">🏛️</span>
-      <h1>Aplicativos de História</h1>
-      <p>Duas ferramentas para estudar História — abra e comece a revisar.</p>
-    </header>
+  <header class="topo">
+    <img class="logo" src="../assets/logo.svg" width="88" height="88"
+         alt="Logo da Escola Estadual Professor Abel Freire Coelho">
+    <p class="escola">Escola Estadual Professor Abel Freire Coelho · Mossoró-RN</p>
+    <h1>Aplicativos de História</h1>
+    <p>Duas ferramentas para estudar História — abra e comece a revisar.</p>
+  </header>
+
+  <main class="envoltorio">
+    <div class="acoes">
+      <button class="btn btn--instalar" id="btn-instalar" hidden>📲 Instalar no celular</button>
+    </div>
+
+    <div class="dica-instalar">
+      <strong>Como instalar:</strong> no Android/Chrome use o botão acima ou o menu
+      ⋮ → <em>Instalar aplicativo</em>. No iPhone/iPad (Safari) toque em
+      <em>Compartilhar</em> → <em>Adicionar à Tela de Início</em>. Depois de instalado,
+      o site abre direto do ícone e <strong>funciona sem internet</strong>.
+    </div>
 
     <div class="lista">
       <a class="aplicativo" href="cronicas-da-historia/index.html">
@@ -81,8 +194,8 @@
           <span class="tag">Repetição espaçada</span>
           <span class="tag">Quiz</span>
           <span class="tag">Linha do tempo</span>
-          <span class="tag">63 cards</span>
-          <span class="tag">59 questões</span>
+          <span class="tag tag--amarelo">63 cards</span>
+          <span class="tag tag--amarelo">59 questões</span>
         </span>
       </a>
 
@@ -98,7 +211,13 @@
       </a>
     </div>
 
-    <footer>HTML, CSS e JavaScript puro — não precisa instalar nada.</footer>
-  </div>
+    <footer>
+      Escola Estadual Professor Abel Freire Coelho — Mossoró-RN ·
+      HTML, CSS e JavaScript puro<br>
+      <strong>Os dados ficam salvos no seu aparelho.</strong>
+    </footer>
+  </main>
+
+  <script src="js/pwa.js"></script>
 </body>
 </html>

@@ -1,8 +1,9 @@
 # Crônicas da História 🏛️
 
-Aplicativo de estudos de **História**, feito em HTML, CSS e JavaScript puro (sem
-dependências, sem build). Toda a interface e todo o conteúdo estão em **português
-do Brasil (pt-BR)**.
+Aplicativo de estudos de **História** da **Escola Estadual Professor Abel Freire
+Coelho (Mossoró-RN)**, feito em HTML, CSS e JavaScript puro (sem dependências,
+sem build). Toda a interface e todo o conteúdo estão em **português do Brasil
+(pt-BR)**. Cores: azul, amarelo e branco, com o brasão da escola no cabeçalho.
 
 ## Como usar
 
@@ -75,6 +76,7 @@ app/cronicas-da-historia/
 ├── manifest.webmanifest  # dados do PWA (nome, ícone, cores, modo standalone)
 ├── sw.js                 # service worker (cache da casca do app / offline)
 ├── css/styles.css        # estilos (com suporte a tema escuro)
+├── assets/logo.svg       # brasão da escola (provisório)
 ├── icons/                # ícones do PWA (192, 512, maskable, apple-touch)
 └── js/
     ├── dados.js          # conteúdo: cards, questões e linha do tempo

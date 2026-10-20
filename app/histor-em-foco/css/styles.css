@@ -5,46 +5,55 @@
 :root {
   --fonte: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
-  --fundo: #f4f1ea;
+  /* Paleta da escola: azul, amarelo e branco */
+  --fundo: #eef4fd;
   --fundo-2: #ffffff;
-  --fundo-3: #efeade;
-  --texto: #22201c;
-  --texto-suave: #6b6559;
-  --borda: #e2ddd0;
-  --primaria: #9c4221;
-  --primaria-escura: #7d3318;
-  --primaria-clara: #f7ebe5;
+  --fundo-3: #e2edfc;
+  --texto: #0f2340;
+  --texto-suave: #4c6182;
+  --borda: #d4e2f6;
+  --primaria: #1565c0;
+  --primaria-escura: #0d47a1;
+  --primaria-clara: #e2edfc;
+  --amarelo: #ffc107;
+  --amarelo-escuro: #a87400;
+  --amarelo-claro: #fff4d1;
   --sucesso: #2e7d4f;
   --sucesso-clara: #e7f4ec;
-  --erro: #b3392f;
+  --erro: #b3261e;
   --erro-clara: #fbeceb;
-  --ouro: #b8860b;
+  --ouro: #ffc107;
 
   --raio: 14px;
   --raio-g: 20px;
-  --sombra: 0 2px 4px rgba(34, 32, 28, .05), 0 10px 26px rgba(34, 32, 28, .07);
-  --sombra-forte: 0 6px 14px rgba(34, 32, 28, .10), 0 22px 50px rgba(34, 32, 28, .12);
+  --sombra: 0 2px 4px rgba(15, 35, 64, .05), 0 10px 26px rgba(15, 35, 64, .07);
+  --sombra-forte: 0 6px 14px rgba(15, 35, 64, .10), 0 22px 50px rgba(15, 35, 64, .12);
   --transicao: .22s cubic-bezier(.4, 0, .2, 1);
+  --topo-fundo: linear-gradient(135deg, #1e6fd0 0%, #0a3d8f 100%);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --fundo: #16151a;
-    --fundo-2: #1f1e25;
-    --fundo-3: #26252d;
-    --texto: #f0ede7;
-    --texto-suave: #a7a2b5;
-    --borda: #34323d;
-    --primaria: #e0784a;
-    --primaria-escura: #f08f61;
-    --primaria-clara: #2c211c;
+    --fundo: #0b1524;
+    --fundo-2: #111f36;
+    --fundo-3: #16294a;
+    --texto: #eaf2ff;
+    --texto-suave: #a3bada;
+    --borda: #22375c;
+    --primaria: #63a8ff;
+    --primaria-escura: #8cc4ff;
+    --primaria-clara: #16294a;
+    --amarelo: #ffd34d;
+    --amarelo-escuro: #ffc107;
+    --amarelo-claro: #3b2f0c;
     --sucesso: #5bc98a;
     --sucesso-clara: #1b2a22;
-    --erro: #f0776b;
+    --erro: #f08b84;
     --erro-clara: #2c1c1a;
-    --ouro: #e0b44a;
+    --ouro: #ffd34d;
     --sombra: 0 2px 4px rgba(0, 0, 0, .25), 0 10px 26px rgba(0, 0, 0, .30);
     --sombra-forte: 0 6px 14px rgba(0, 0, 0, .35), 0 22px 50px rgba(0, 0, 0, .40);
+    --topo-fundo: linear-gradient(135deg, #123a72 0%, #07172f 100%);
   }
 }
 
@@ -75,12 +84,12 @@ kbd {
 
 /* ---------------- Cabeçalho ---------------- */
 .topo {
-  background: var(--fundo-2);
-  border-bottom: 1px solid var(--borda);
+  background: var(--topo-fundo);
+  border-bottom: 3px solid var(--amarelo);
   position: sticky;
   top: 0;
   z-index: 20;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, .02);
+  box-shadow: 0 2px 8px rgba(10, 61, 143, .25);
 }
 
 .topo__conteudo {
@@ -95,14 +104,28 @@ kbd {
 }
 
 .marca { display: flex; align-items: center; gap: .75rem; }
-.marca__icone { font-size: 1.9rem; line-height: 1; }
-.marca__nome { font-size: 1.25rem; font-weight: 800; letter-spacing: -.02em; }
-.marca__sub { margin: 0; font-size: .82rem; color: var(--texto-suave); }
+.marca__logo {
+  width: 50px;
+  height: 50px;
+  flex: none;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .25));
+}
+.marca__texto { display: flex; flex-direction: column; }
+.escola-nome {
+  margin: 0 0 2px;
+  font-size: .64rem;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--amarelo);
+}
+.marca__nome { font-size: 1.25rem; font-weight: 800; letter-spacing: -.02em; color: #fff; }
+.marca__sub { margin: 0; font-size: .82rem; color: rgba(255, 255, 255, .82); }
 
 .abas {
   display: flex;
   gap: .25rem;
-  background: var(--fundo-3);
+  background: rgba(255, 255, 255, .16);
   padding: .25rem;
   border-radius: 999px;
 }
@@ -110,7 +133,7 @@ kbd {
 .aba {
   border: 0;
   background: transparent;
-  color: var(--texto-suave);
+  color: rgba(255, 255, 255, .88);
   font: inherit;
   font-size: .9rem;
   font-weight: 600;
@@ -121,12 +144,13 @@ kbd {
   white-space: nowrap;
 }
 
-.aba:hover { color: var(--texto); }
+.aba:hover { color: #fff; background: rgba(255, 255, 255, .14); }
 .aba--ativa {
-  background: var(--fundo-2);
-  color: var(--primaria);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, .10);
+  background: var(--amarelo);
+  color: #3b2f00;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .18);
 }
+.aba--ativa:hover { color: #3b2f00; background: var(--amarelo); }
 
 /* ---------------- Layout ---------------- */
 .conteudo {
@@ -196,7 +220,7 @@ kbd {
   background: var(--primaria);
   border-color: var(--primaria);
   color: #fff;
-  box-shadow: 0 4px 12px rgba(156, 66, 33, .28);
+  box-shadow: 0 4px 12px rgba(21, 101, 192, .28);
 }
 .chip--ativo:hover { color: #fff; }
 .chip__contagem { font-size: .75rem; opacity: .75; font-weight: 500; }
@@ -214,7 +238,17 @@ kbd {
 }
 
 .botao--primario { background: var(--primaria); color: #fff; }
-.botao--primario:hover { background: var(--primaria-escura); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(156, 66, 33, .30); }
+.botao--primario:hover { background: var(--primaria-escura); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(21, 101, 192, .30); }
+
+/* botão de instalar o app (aparece quando o navegador oferece a instalação) */
+.botao--instalar {
+  background: var(--amarelo);
+  color: #3b2f00;
+  border-color: var(--amarelo);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.botao--instalar:hover { background: var(--amarelo-escuro); border-color: var(--amarelo-escuro); color: #fff; }
 
 .botao--secundario { background: var(--fundo-3); color: var(--texto); border-color: var(--borda); }
 .botao--secundario:hover { border-color: var(--primaria); color: var(--primaria); }
@@ -243,8 +277,8 @@ kbd {
 }
 
 .etiqueta {
-  background: var(--primaria-clara);
-  color: var(--primaria);
+  background: var(--amarelo-claro);
+  color: var(--amarelo-escuro);
   font-size: .78rem;
   font-weight: 700;
   padding: .3rem .75rem;
@@ -414,7 +448,7 @@ kbd {
   transition: transform .5s cubic-bezier(.4, 0, .2, 1);
 }
 
-.flashcard__verso { transform: rotateY(180deg); background: var(--primaria-clara); border-color: var(--primaria); }
+.flashcard__verso { transform: rotateY(180deg); background: var(--amarelo-claro); border-color: var(--amarelo); }
 .flashcard--virada .flashcard__frente { transform: rotateY(-180deg); }
 .flashcard--virada .flashcard__verso { transform: rotateY(0deg); }
 
@@ -508,15 +542,30 @@ kbd {
   color: var(--texto-suave);
   font-size: .85rem;
 }
+.rodape__escola { margin-top: .35rem; font-weight: 600; color: var(--primaria); }
 
 /* ---------------- Responsivo ---------------- */
 @media (max-width: 640px) {
   .topo__conteudo { flex-direction: column; align-items: stretch; }
+  .marca { gap: .6rem; }
+  .marca__logo { width: 44px; height: 44px; }
+  .marca__nome { font-size: 1.1rem; }
+  .botao--instalar { align-self: flex-start; }
   .abas { justify-content: space-between; overflow-x: auto; }
   .aba { flex: 1 0 auto; text-align: center; padding: .45rem .7rem; font-size: .84rem; }
   .cartao { padding: 1.2rem; }
   .questao__texto { font-size: 1.12rem; }
   .acoes-centrais .botao { flex: 1 1 100%; }
+}
+
+@media (prefers-color-scheme: dark) {
+  /* cores claras pedem texto escuro para dar contraste */
+  .chip--ativo { color: #0b1524; }
+  .botao--primario { color: #0b1524; }
+  .botao--primario:hover { color: #0b1524; }
+  .opcao--correta .opcao__letra,
+  .opcao--errada .opcao__letra { color: #0b1524; }
+  .botao--instalar { color: #3b2f00; }
 }
 
 @media (prefers-reduced-motion: reduce) {

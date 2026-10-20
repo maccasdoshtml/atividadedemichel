@@ -766,7 +766,11 @@ function prepararInstalacao() {
   });
 
   botao.addEventListener("click", async () => {
-    if (!promptInstalacao) return;
+    if (!promptInstalacao) {
+      /* Navegador sem instalação automática (ex.: Safari): explica o caminho. */
+      aviso("Use o menu do navegador (⋮) → “Instalar aplicativo” ou “Adicionar à tela de início”.");
+      return;
+    }
     botao.hidden = true;
     promptInstalacao.prompt();
     await promptInstalacao.userChoice;
@@ -778,6 +782,14 @@ function prepararInstalacao() {
     promptInstalacao = null;
     aviso("App instalado! Agora ele abre direto na tela inicial.");
   });
+
+  /* Se o navegador não disparar o evento, mostramos o botão mesmo assim
+     para o aluno saber que existe a opção de instalar. */
+  setTimeout(() => {
+    if (promptInstalacao) return;
+    if (window.matchMedia("(display-mode: standalone)").matches) return;
+    botao.hidden = false;
+  }, 2500);
 }
 
 /* =========================================

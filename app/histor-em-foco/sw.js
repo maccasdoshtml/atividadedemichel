@@ -1,9 +1,9 @@
 /* =========================================
-   Service worker — Crônicas da História
+   Service worker — História em Foco
    Permite instalar o app e usar offline.
    ========================================= */
 
-const VERSAO = "histor-em-foco-v1";
+const VERSAO = "histor-em-foco-v2";
 const CACHE = VERSAO;
 
 /* Casca do app: o que precisa estar disponível para o app abrir. */
@@ -14,28 +14,50 @@ const CASCA = [
   "./css/styles.css",
   "./js/dados.js",
   "./js/app.js",
+  "./assets/logo.svg",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./icons/icon-maskable-512.png",
   "./icons/apple-touch-icon-180.png",
 ];
 
+/* Página usada quando o usuário está offline. */
+const OFFLINE = "./index.html";
+
+/* Um item que falhou não pode derrubar a instalação inteira. */
+async function guardar(cache, lista) {
+  const resultados = await Promise.allSettled(
+    lista.map((url) => cache.add(new Request(url, { cache: "reload" })))
+  );
+  const falhas = resultados
+    .map((r, i) => (r.status === "rejected" ? lista[i] : null))
+    .filter(Boolean);
+  if (falhas.length) console.warn("SW: não foi possível guardar", falhas);
+}
+
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE)
-      .then((cache) => cache.addAll(CASCA))
+    caches
+      .open(CACHE)
+      .then((cache) => guardar(cache, CASCA))
       .then(() => self.skipWaiting())
   );
 });
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys()
-      .then((chaves) => Promise.all(
-        chaves.filter((c) => c !== CACHE).map((c) => caches.delete(c))
-      ))
+    caches
+      .keys()
+      .then((chaves) =>
+        Promise.all(chaves.filter((c) => c !== CACHE).map((c) => caches.delete(c)))
+      )
       .then(() => self.clients.claim())
   );
+});
+
+/* Permite atualizar o app assim que uma versão nova é publicada. */
+self.addEventListener("message", (event) => {
+  if (event.data === "SKIP_WAITING") self.skipWaiting();
 });
 
 self.addEventListener("fetch", (event) => {
@@ -55,7 +77,15 @@ self.addEventListener("fetch", (event) => {
           caches.open(CACHE).then((cache) => cache.put(requisicao, copia));
           return resposta;
         })
-        .catch(() => caches.match("./index.html").then((r) => r || caches.match("./")))
+        .catch(async () => {
+          const cache = await caches.open(CACHE);
+          return (
+            (await cache.match(requisicao)) ||
+            (await cache.match(url.pathname)) ||
+            (await cache.match(OFFLINE)) ||
+            (await cache.match("./"))
+          );
+        })
     );
     return;
   }

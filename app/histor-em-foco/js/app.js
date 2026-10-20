@@ -497,6 +497,58 @@
   }
 
   /* =======================================================
+     PWA: botão "Instalar" (aparece quando o navegador
+     permite instalar o app)
+     ======================================================= */
+  (function prepararInstalacao() {
+    var botao = document.getElementById('btn-instalar');
+    if (!botao) return;
+
+    var prompt = null;
+
+    function aviso(mensagem) {
+      var aviso = document.createElement('div');
+      aviso.textContent = mensagem;
+      aviso.style.cssText = 'position:fixed;left:50%;bottom:22px;transform:translateX(-50%);' +
+        'background:#0f2340;color:#fff;padding:11px 20px;border-radius:999px;font-size:14px;' +
+        'box-shadow:0 10px 30px rgba(0,0,0,.3);z-index:60;max-width:90vw;text-align:center';
+      document.body.appendChild(aviso);
+      setTimeout(function () { aviso.remove(); }, 4200);
+    }
+
+    window.addEventListener('beforeinstallprompt', function (evento) {
+      evento.preventDefault();
+      prompt = evento;
+      botao.hidden = false;
+    });
+
+    botao.addEventListener('click', function () {
+      if (!prompt) {
+        aviso('Use o menu do navegador (⋮) → “Instalar aplicativo” ou “Adicionar à tela de início”.');
+        return;
+      }
+      botao.hidden = true;
+      prompt.prompt();
+      prompt.userChoice.then(function () { prompt = null; });
+    });
+
+    window.addEventListener('appinstalled', function () {
+      botao.hidden = true;
+      prompt = null;
+    });
+
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      botao.hidden = true;
+    } else {
+      /* Se o navegador não disparar o evento, o botão aparece mesmo assim
+         para o aluno saber que existe a opção de instalar. */
+      setTimeout(function () {
+        if (!prompt) botao.hidden = false;
+      }, 2500);
+    }
+  })();
+
+  /* =======================================================
      Inicialização
      ======================================================= */
   montarChipsQuiz();
