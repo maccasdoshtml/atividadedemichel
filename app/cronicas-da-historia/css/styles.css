@@ -97,6 +97,7 @@ body {
 body.tema-escuro .aba.ativa { color: #17140f; }
 
 .topo-info { display: flex; align-items: center; gap: 10px; }
+.btn-instalar { padding: 7px 13px; font-size: 13px; white-space: nowrap; }
 .contador-badge {
   background: var(--primaria);
   color: #fff;

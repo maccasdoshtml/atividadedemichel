@@ -27,6 +27,13 @@ Extras: atalhos de teclado (`1`–`4` respondem, `Enter` avança), filtro por te
 todas as abas, tema claro/escuro automático, layout responsivo e progresso salvo
 no `localStorage` do navegador.
 
+## Instalar como app (PWA)
+
+Também é uma **PWA**: abra o site e use o banner "Adicionar à tela de início" (ou
+o ícone de instalar na barra de endereço). No iPhone/Safari: Compartilhar →
+"Adicionar à Tela de Início". O app funciona offline graças ao service worker
+(`sw.js`), e o conteúdo vem do `manifest.webmanifest`.
+
 ## Conteúdo
 
 6 temas: Brasil (colonização e Império), Brasil (República e hoje), Mundo Antigo,

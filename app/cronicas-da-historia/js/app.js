@@ -741,6 +741,46 @@ function registrarEventos() {
 }
 
 /* =========================================
+   PWA: service worker e instalação
+   ========================================= */
+
+let promptInstalacao = null;
+
+function registrarServiceWorker() {
+  if (!("serviceWorker" in navigator)) return;
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch((e) => {
+      console.warn("Service worker não registrado:", e);
+    });
+  });
+}
+
+function prepararInstalacao() {
+  const botao = $("#btn-instalar");
+  if (!botao) return;
+
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    promptInstalacao = e;
+    botao.hidden = false;
+  });
+
+  botao.addEventListener("click", async () => {
+    if (!promptInstalacao) return;
+    botao.hidden = true;
+    promptInstalacao.prompt();
+    await promptInstalacao.userChoice;
+    promptInstalacao = null;
+  });
+
+  window.addEventListener("appinstalled", () => {
+    botao.hidden = true;
+    promptInstalacao = null;
+    aviso("App instalado! Agora ele abre direto na tela inicial.");
+  });
+}
+
+/* =========================================
    INICIALIZAÇÃO
    ========================================= */
 
@@ -758,6 +798,9 @@ function iniciar() {
   renderLinha();
   atualizarContador();
   montarSessao(false);
+
+  registrarServiceWorker();
+  prepararInstalacao();
 }
 
 document.addEventListener("DOMContentLoaded", iniciar);

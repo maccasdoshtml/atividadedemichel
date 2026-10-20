@@ -26,6 +26,22 @@ python3 -m http.server 8000
 Extras: tema claro/escuro, atalhos de teclado (`Espaço` revela, `1`–`4` avaliam,
 `Enter` avança), layout responsivo e tudo salvo no `localStorage` do navegador.
 
+## Instalar como app (PWA)
+
+O app é uma **PWA** (Progressive Web App): pode ser instalada na tela inicial do
+celular ou do computador e funciona **offline**.
+
+- **No celular (Android/Chrome):** abra o site e use o banner "Adicionar à tela
+  de início", ou o botão **📲 Instalar** que aparece no topo do app.
+- **No iPhone/iPad (Safari):** toque em Compartilhar → "Adicionar à Tela de Início".
+- **No computador (Chrome/Edge):** clique no ícone de instalar na barra de
+  endereço, ou no botão **📲 Instalar** do app.
+
+O que sustenta a instalação: `manifest.webmanifest` (nome, ícone, cores e modo
+standalone) e `sw.js`, um service worker que guarda a casca do app no cache — por
+isso ele abre sem internet. Os seus cards continuam salvos no `localStorage` do
+navegador.
+
 ## Como funciona a repetição espaçada
 
 Ao responder um card você informa quanto lembrava. O intervalo até a próxima revisão
@@ -55,12 +71,18 @@ Idade Média e Renascimento · Revoluções e Era Moderna · Guerras Mundiais e 
 
 ```
 app/cronicas-da-historia/
-├── index.html      # estrutura da página
-├── css/styles.css  # estilos (com suporte a tema escuro)
+├── index.html            # estrutura da página
+├── manifest.webmanifest  # dados do PWA (nome, ícone, cores, modo standalone)
+├── sw.js                 # service worker (cache da casca do app / offline)
+├── css/styles.css        # estilos (com suporte a tema escuro)
+├── icons/                # ícones do PWA (192, 512, maskable, apple-touch)
 └── js/
-    ├── dados.js    # conteúdo: cards, questões e linha do tempo
-    └── app.js      # lógica do aplicativo
+    ├── dados.js          # conteúdo: cards, questões e linha do tempo
+    └── app.js            # lógica do aplicativo
 ```
+
+Ao alterar `js/`, `css/` ou `dados.js`, suba a `VERSAO` em `sw.js` (ex.:
+`cronicas-v2`) para que os navegadores peguem a versão nova do cache.
 
 Para adicionar cards, edite `js/dados.js`: cada item precisa de `tema` (id de um
 dos temas em `TEMAS`), `frente` (a pergunta) e `verso` (a resposta).

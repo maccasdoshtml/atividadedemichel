@@ -7,6 +7,16 @@ Duas ferramentas para estudar **História**, feitas em HTML, CSS e JavaScript pu
 Abra [`app/index.html`](app/index.html) no navegador para ver a lista de aplicativos
 e escolher qual usar. Não é preciso instalar nada.
 
+## Instalar no celular ou no computador
+
+Os dois aplicativos são **PWAs**: dá para instalar na tela inicial e usar offline.
+
+- **Android/Chrome:** banner "Adicionar à tela de início" ou o botão **📲 Instalar** no topo do app
+- **iPhone/iPad (Safari):** Compartilhar → "Adicionar à Tela de Início"
+- **Chrome/Edge no PC:** ícone de instalar na barra de endereço
+
+Online: **https://maccasdoshtml.github.io/atividadedemichel/**
+
 ## Os aplicativos
 
 ### [Crônicas da História](app/cronicas-da-historia/) — [`README`](README-cronicas-da-historia.md)

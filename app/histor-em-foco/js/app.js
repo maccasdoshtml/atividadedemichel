@@ -485,6 +485,17 @@
     }
   });
 
+/* =======================================================
+     PWA: service worker (permite instalar e usar offline)
+     ======================================================= */
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').catch(function (erro) {
+        console.warn('Service worker não registrado:', erro);
+      });
+    });
+  }
+
   /* =======================================================
      Inicialização
      ======================================================= */
