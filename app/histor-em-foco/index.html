@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Estuda História de forma divertida: quizzes, cartões de revisão, linha do tempo e estatísticas.">
+  <title>História em Foco — App de estudos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="topo">
+    <div class="topo__conteudo">
+      <div class="marca">
+        <span class="marca__icone" aria-hidden="true">🏛️</span>
+        <div>
+          <h1 class="marca__nome">História em Foco</h1>
+          <p class="marca__sub">Seu companheiro de estudos</p>
+        </div>
+      </div>
+
+      <nav class="abas" role="tablist" aria-label="Seções do aplicativo">
+        <button class="aba aba--ativa" role="tab" aria-selected="true" data-aba="quiz">Quiz</button>
+        <button class="aba" role="tab" aria-selected="false" data-aba="cartoes">Cartões</button>
+        <button class="aba" role="tab" aria-selected="false" data-aba="linha">Linha do tempo</button>
+        <button class="aba" role="tab" aria-selected="false" data-aba="estatisticas">Estatísticas</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="conteudo">
+
+    <!-- ===================== QUIZ ===================== -->
+    <section class="painel painel--ativo" id="painel-quiz" role="tabpanel" aria-label="Quiz">
+      <div class="escolha-categorias">
+        <h2 class="bloco__titulo">Escolha um tema</h2>
+        <div class="chips" id="quiz-categorias"></div>
+      </div>
+
+      <!-- Tela de instruções -->
+      <div class="cartao cartao--intro" id="quiz-intro">
+        <h2 class="cartao__titulo">Vamos testar seus conhecimentos?</h2>
+        <p class="cartao__texto">
+          Escolha um tema acima e comece o quiz. A cada resposta você recebe uma explicação
+          para fixar melhor a ideia — errou? Tudo bem, a explicação aparece justamente aí.
+        </p>
+        <ul class="regras">
+          <li><strong>Teclado:</strong> use <kbd>1</kbd>–<kbd>4</kbd> para responder e <kbd>Enter</kbd> para avançar.</li>
+          <li><strong>Progresso salvo</strong> no seu navegador: suas estatísticas ficam sempre com você.</li>
+        </ul>
+        <button class="botao botao--primario botao--grande" id="btn-iniciar">Começar o quiz</button>
+      </div>
+
+      <!-- Tela da questão -->
+      <div class="cartao cartao--questao" id="quiz-questao" hidden>
+        <div class="questao__topo">
+          <span class="etiqueta" id="quiz-tema">Tema</span>
+          <span class="questao__contador">Questão <strong id="quiz-atual">1</strong> de <strong id="quiz-total">0</strong></span>
+        </div>
+
+        <div class="barra-progresso" role="progressbar" aria-label="Progresso do quiz" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="quiz-progresso">
+          <div class="barra-progresso__preenchimento" id="quiz-barra"></div>
+        </div>
+
+        <h2 class="questao__texto" id="quiz-pergunta">Pergunta</h2>
+
+        <div class="opcoes" id="quiz-opcoes" role="group" aria-label="Alternativas"></div>
+
+        <div class="retorno" id="quiz-retorno" role="status" aria-live="polite" hidden>
+          <p class="retorno__titulo" id="quiz-retorno-titulo"></p>
+          <p class="retorno__texto" id="quiz-retorno-texto"></p>
+        </div>
+
+        <div class="questao__acoes">
+          <span class="placar">Acertos: <strong id="quiz-acertos">0</strong></span>
+          <button class="botao botao--primario" id="btn-proxima" hidden>Próxima</button>
+        </div>
+      </div>
+
+      <!-- Tela do resultado -->
+      <div class="cartao cartao--resultado" id="quiz-resultado" hidden>
+        <span class="resultado__emoji" id="resultado-emoji">🎉</span>
+        <h2 class="cartao__titulo" id="resultado-titulo">Resultado</h2>
+        <p class="cartao__texto" id="resultado-texto">Você acertou 0 de 0.</p>
+        <p class="resultado__nota" id="resultado-nota">0%</p>
+        <div class="acoes-centrais">
+          <button class="botao botao--primario" id="btn-reiniciar">Refazer o quiz</button>
+          <button class="botao botao--secundario" id="btn-revisar">Revisar erros</button>
+          <button class="botao botao--fantasma" id="btn-ver-stats">Ver estatísticas</button>
+        </div>
+      </div>
+
+      <!-- Tela de revisão de erros -->
+      <div class="cartao cartao--revisao" id="quiz-revisao" hidden>
+        <div class="revisao__topo">
+          <h2 class="cartao__titulo">Revisão dos erros</h2>
+          <button class="botao botao--fantasma botao--pequeno" id="btn-voltar-quiz">← Voltar</button>
+        </div>
+        <div id="lista-erros"></div>
+      </div>
+    </section>
+
+    <!-- ===================== CARTÕES ===================== -->
+    <section class="painel" id="painel-cartoes" role="tabpanel" aria-label="Cartões de revisão" hidden>
+      <div class="escolha-categorias">
+        <h2 class="bloco__titulo">Filtrar por tema</h2>
+        <div class="chips" id="cartoes-categorias"></div>
+      </div>
+
+      <div class="cartao cartao--cartao" id="cartoes-area">
+        <div class="cartao__contador" id="cartoes-contador">1 / 1</div>
+
+        <div class="flashcard" id="flashcard" tabindex="0" role="button" aria-label="Virar o cartão">
+          <div class="flashcard__frente">
+            <span class="flashcard__rotulo">Pergunta</span>
+            <p class="flashcard__texto" id="flashcard-frente"></p>
+          </div>
+          <div class="flashcard__verso">
+            <span class="flashcard__rotulo">Resposta</span>
+            <p class="flashcard__texto" id="flashcard-verso"></p>
+          </div>
+        </div>
+
+        <p class="dica">Clique no cartão ou pressione <kbd>Espaço</kbd> para virar.</p>
+
+        <div class="acoes-centrais">
+          <button class="botao botao--secundario" id="btn-cartao-anterior">← Anterior</button>
+          <button class="botao botao--primario" id="btn-cartao-virar">Virar cartão</button>
+          <button class="botao botao--secundario" id="btn-cartao-proximo">Próximo →</button>
+          <button class="botao botao--fantasma" id="btn-cartao-aleatorio">🔀 Embaralhar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== LINHA DO TEMPO ===================== -->
+    <section class="painel" id="painel-linha" role="tabpanel" aria-label="Linha do tempo" hidden>
+      <div class="escolha-categorias">
+        <h2 class="bloco__titulo">Filtrar por tema</h2>
+        <div class="chips" id="linha-categorias"></div>
+      </div>
+      <div class="cartao">
+        <div class="linha-tempo" id="linha-tempo"></div>
+      </div>
+    </section>
+
+    <!-- ===================== ESTATÍSTICAS ===================== -->
+    <section class="painel" id="painel-estatisticas" role="tabpanel" aria-label="Estatísticas" hidden>
+      <div class="cartao">
+        <h2 class="cartao__titulo">Seu desempenho</h2>
+        <p class="cartao__texto">Os dados ficam salvos apenas neste navegador.</p>
+
+        <div class="indicadores">
+          <div class="indicador">
+            <span class="indicador__valor" id="stat-total">0</span>
+            <span class="indicador__rotulo">Respostas dadas</span>
+          </div>
+          <div class="indicador">
+            <span class="indicador__valor" id="stat-acertos">0</span>
+            <span class="indicador__rotulo">Acertos</span>
+          </div>
+          <div class="indicador">
+            <span class="indicador__valor" id="stat-precisao">0%</span>
+            <span class="indicador__rotulo">Precisão</span>
+          </div>
+        </div>
+
+        <h3 class="bloco__titulo">Desempenho por tema</h3>
+        <div class="tabela-temas" id="stat-temas"></div>
+
+        <div class="acoes-centrais">
+          <button class="botao botao--fantasma" id="btn-limpar-stats">🗑️ Apagar estatísticas</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <p>História em Foco — feito para estudar com calma. Bons estudos! 📚</p>
+  </footer>
+
+  <script src="js/dados.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
