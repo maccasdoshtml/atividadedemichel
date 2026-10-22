@@ -7,7 +7,7 @@
    na tela inicial e usar sem internet.
    ========================================= */
 
-const VERSAO = "eepafc-site-v2";
+const VERSAO = "eepafc-site-v3";
 const CACHE = VERSAO;
 
 /* Tudo que é preciso para o site abrir offline. */
@@ -15,7 +15,7 @@ const CASCA = [
   "./",
   "./index.html",
   "./manifest.webmanifest",
-  "./assets/logo.svg",
+  "./assets/logo.jpg",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./icons/icon-maskable-512.png",
@@ -28,7 +28,7 @@ const CASCA = [
   "./app/cronicas-da-historia/css/styles.css",
   "./app/cronicas-da-historia/js/dados.js",
   "./app/cronicas-da-historia/js/app.js",
-  "./app/cronicas-da-historia/assets/logo.svg",
+  "./app/cronicas-da-historia/assets/logo.jpg",
   "./app/cronicas-da-historia/icons/icon-192.png",
   "./app/cronicas-da-historia/icons/icon-512.png",
   "./app/cronicas-da-historia/icons/icon-maskable-512.png",
@@ -39,7 +39,7 @@ const CASCA = [
   "./app/histor-em-foco/css/styles.css",
   "./app/histor-em-foco/js/dados.js",
   "./app/histor-em-foco/js/app.js",
-  "./app/histor-em-foco/assets/logo.svg",
+  "./app/histor-em-foco/assets/logo.jpg",
   "./app/histor-em-foco/icons/icon-192.png",
   "./app/histor-em-foco/icons/icon-512.png",
   "./app/histor-em-foco/icons/icon-maskable-512.png",

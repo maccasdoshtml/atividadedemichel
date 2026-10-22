@@ -76,7 +76,7 @@ app/cronicas-da-historia/
 ├── manifest.webmanifest  # dados do PWA (nome, ícone, cores, modo standalone)
 ├── sw.js                 # service worker (cache da casca do app / offline)
 ├── css/styles.css        # estilos (com suporte a tema escuro)
-├── assets/logo.svg       # brasão da escola (provisório)
+├── assets/logo.jpg       # foto oficial da escola
 ├── icons/                # ícones do PWA (192, 512, maskable, apple-touch)
 └── js/
     ├── dados.js          # conteúdo: cards, questões e linha do tempo

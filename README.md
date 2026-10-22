@@ -5,9 +5,10 @@ Duas ferramentas para estudar **História**, feitas em HTML, CSS e JavaScript pu
 **português do Brasil (pt-BR)**.
 
 Identidade visual da **Escola Estadual Professor Abel Freire Coelho — Mossoró-RN**:
-paleta azul, amarelo e branco, com o brasão da escola no cabeçalho e nos ícones
-do PWA (a logo em `assets/logo.svg` é **provisória** — basta trocar pelo arquivo
-oficial mantendo o mesmo nome).
+paleta azul, amarelo e branco, com a foto oficial da escola no cabeçalho e nos
+ícones do PWA (a imagem em `assets/logo.jpg` é a foto da escola).
+
+Desenvolvido por **Valdemar Soares de Brito Neto** — estudante de Informática.
 
 Abra [`app/index.html`](app/index.html) no navegador para ver a lista de aplicativos
 e escolher qual usar. Não é preciso instalar nada.
@@ -55,9 +56,9 @@ Online: **https://maccasdoshtml.github.io/atividadedemichel/**
 ```
 manifest.webmanifest         # PWA do site inteiro (nome, ícone, cores, atalhos)
 sw.js                        # service worker do site (cache + offline)
-assets/logo.svg              # brasão da escola (provisório)
+assets/logo.jpg              # foto oficial da escola
 icons/                       # ícones do PWA (192, 512, maskable, apple-touch)
-tools/gerar_logos.py         # script que gera os ícones a partir do brasão
+tools/gerar_logos.py         # script que gera os ícones a partir da foto
 app/
 ├── index.html               # página inicial com os links
 ├── js/pwa.js                # registra o service worker e o botão "Instalar"
@@ -65,14 +66,14 @@ app/
 │   ├── index.html
 │   ├── manifest.webmanifest
 │   ├── sw.js
-│   ├── assets/logo.svg
+│   ├── assets/logo.jpg
 │   ├── css/styles.css
 │   └── js/{dados.js, app.js}
 └── histor-em-foco/          # quiz, cartões e estatísticas
     ├── index.html
     ├── manifest.webmanifest
     ├── sw.js
-    ├── assets/logo.svg
+    ├── assets/logo.jpg
     ├── css/styles.css
     └── js/{dados.js, app.js}
 ```

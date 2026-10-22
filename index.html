@@ -22,7 +22,14 @@
       text-align: center;
       padding: 20px;
     }
-    img { width: 92px; height: 92px; }
+    img {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #ffc107;
+      box-shadow: 0 6px 18px rgba(15, 35, 64, .25);
+    }
     p { margin: 14px 0 0; font-weight: 600; }
     small { display: block; margin-top: 6px; color: #4c6182; font-weight: 400; }
     a { color: #1565c0; }
@@ -30,10 +37,11 @@
 </head>
 <body>
   <div>
-    <img src="assets/logo.svg" width="92" height="92"
+    <img src="assets/logo.jpg" width="92" height="92"
          alt="Logo da Escola Estadual Professor Abel Freire Coelho">
     <p>Levando para os aplicativos… <a href="app/">clique aqui</a> se não for automático.
       <small>Escola Estadual Professor Abel Freire Coelho — Mossoró-RN</small>
+      <small>Desenvolvido por Valdemar Soares de Brito Neto</small>
     </p>
   </div>
   <script>location.replace("app/");</script>

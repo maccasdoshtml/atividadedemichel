@@ -3,7 +3,7 @@
    Permite instalar o app e usar offline.
    ========================================= */
 
-const VERSAO = "cronicas-v2";
+const VERSAO = "cronicas-v3";
 const CACHE = VERSAO;
 
 /* Casca do app: o que precisa estar disponível para o app abrir. */
@@ -14,7 +14,7 @@ const CASCA = [
   "./css/styles.css",
   "./js/dados.js",
   "./js/app.js",
-  "./assets/logo.svg",
+  "./assets/logo.jpg",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./icons/icon-maskable-512.png",

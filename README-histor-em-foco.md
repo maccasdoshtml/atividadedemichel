@@ -52,7 +52,7 @@ app/histor-em-foco/
 ├── manifest.webmanifest
 ├── sw.js           # service worker (cache + offline)
 ├── css/styles.css  # estilos (com suporte a tema escuro)
-├── assets/logo.svg # brasão da escola (provisório)
+├── assets/logo.jpg # foto oficial da escola
 └── js/
     ├── dados.js    # conteúdo: questões, cartões e linha do tempo
     └── app.js      # lógica do aplicativo

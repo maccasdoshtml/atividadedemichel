@@ -83,6 +83,9 @@ body {
   width: 52px;
   height: 52px;
   flex: none;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--amarelo);
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .25));
 }
 .marca-texto { display: flex; flex-direction: column; }
@@ -489,6 +492,18 @@ body.tema-escuro .btn-erro,
 body.tema-escuro .btn-medio,
 body.tema-escuro .btn-facil,
 body.tema-escuro .btn-bom { color: #0b1524; }
+
+/* ---------------- Rodapé ---------------- */
+.rodape {
+  border-top: 1px solid var(--borda);
+  padding: 1.4rem 1.25rem 2rem;
+  text-align: center;
+  color: var(--texto-suave);
+  font-size: .85rem;
+}
+.rodape p { margin: 0 0 .2rem; }
+.rodape__escola { font-weight: 600; color: var(--primaria); }
+.rodape__dev { font-size: .8rem; }
 
 /* ---------------- Responsivo ---------------- */
 @media (max-width: 720px) {
